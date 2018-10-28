@@ -117,7 +117,7 @@ namespace TTSApp
             try
             {
                 var fileName = Regex.Replace(InputTextBox.Text, @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
-                var filePath = Path.GetTempPath() + $"{fileName}.wav";
+                var filePath = Path.GetTempPath() + $"{fileName}.{Model.SelectedProvider.FileExtension}";
 
                 var stream =
                     await Model.SelectedProvider.SynthesizeTextToStreamAsync(Model.SelectedVoice, InputTextBox.Text);
@@ -206,7 +206,7 @@ namespace TTSApp
             await Play();
         }
 
-        private void MenuItemExit_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItemQuit_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -243,6 +243,11 @@ namespace TTSApp
         private void MenuItemWebsite_OnClick(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/medokin/soundpad-text-to-speech");
+        }
+
+        private void MenuItemReportAnIssue_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/medokin/soundpad-text-to-speech/issues/new");
         }
     }
 

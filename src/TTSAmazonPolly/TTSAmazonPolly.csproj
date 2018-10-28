@@ -53,10 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core">
-      <Version>3.3.27.3</Version>
+      <Version>3.3.29</Version>
     </PackageReference>
     <PackageReference Include="AWSSDK.Polly">
-      <Version>3.3.8.4</Version>
+      <Version>3.3.8.7</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

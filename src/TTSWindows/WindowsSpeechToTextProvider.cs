@@ -12,6 +12,8 @@ namespace TTSWindows
     public class WindowsSpeechToTextProvider : ITextToSpeechProvider
     {
         public string Name => "Windows";
+        public string FileExtension => "wav";
+
         bool ITextToSpeechProvider.IsAvailable => Task.Run(IsAvailable).Result;
 
         public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text)

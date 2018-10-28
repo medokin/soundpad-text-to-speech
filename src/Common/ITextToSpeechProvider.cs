@@ -10,6 +10,7 @@ namespace Common
     public interface ITextToSpeechProvider
     {
         string Name { get; }
+        string FileExtension { get; }
         Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text);
         Task<IList<IVoice>> GetVoicesAsync();
         bool IsAvailable { get; }

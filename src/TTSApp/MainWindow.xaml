@@ -17,9 +17,10 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Settings" Click="MenuItemSettings_OnClick" Icon="{iconPacks:Material Kind=Settings}"/>
                 <Separator />
-                <MenuItem Header="_Exit" Click="MenuItemExit_OnClick" Icon="{iconPacks:Material Kind=Close}"/>
+                <MenuItem Header="_Quit" Click="MenuItemQuit_OnClick" Icon="{iconPacks:Material Kind=Close}"/>s
                </MenuItem>
             <MenuItem Header="_Help">
+                <MenuItem Header="_Report an issue" Click="MenuItemReportAnIssue_OnClick" Icon="{iconPacks:Material Kind=Bug}"/>
                 <MenuItem Header="_Website" Click="MenuItemWebsite_OnClick" Icon="{iconPacks:Material Kind=Web}"/>
                 <MenuItem Header="_About" Click="MenuItemAbout_OnClick" Icon="{iconPacks:Material Kind=Information}"/>
             </MenuItem>

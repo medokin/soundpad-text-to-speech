@@ -20,6 +20,7 @@ namespace TTSAmazonPolly
             _client = new AmazonPollyClient(new BasicAWSCredentials(accessKey, secretKey), RegionEndpoint.EUCentral1);
         }
         public string Name => "Amazon Polly";
+        public string FileExtension => "wav";
 
         public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text) {
             var request = new SynthesizeSpeechRequest()

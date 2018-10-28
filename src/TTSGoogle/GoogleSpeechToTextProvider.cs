@@ -36,6 +36,7 @@ namespace TTSGoogle
         }
 
         public string Name => "Google";
+        public string FileExtension => "mp3";
 
         public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text) {
 

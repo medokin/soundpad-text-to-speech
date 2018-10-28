@@ -14,6 +14,8 @@ namespace TTSUniversal
     public class UniversalTextToSpeechProvider : ITextToSpeechProvider
     {
         public string Name => "Universal";
+        public string FileExtension => "wav";
+
         public bool IsAvailable => Task.Run(CheckAvailable).Result;
 
         public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text)
