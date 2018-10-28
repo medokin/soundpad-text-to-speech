@@ -38,16 +38,18 @@ You can download the installer here: [Setup.exe](https://soundpadcontrol.blob.co
 Default Windows TTS Provider
 
 ### Universal
-Additional Windows 10 provider.
-**Works only with Windows 10**
+**Works only with Windows 10**  
+Additional Windows 10 provider. [How to add more voices?](https://support.office.com/en-us/article/download-voices-for-immersive-reader-read-mode-and-read-aloud-4c83a8d8-7486-42f7-8e46-2b0fdf753130)
 
 ### Amazon Polly
+**Account required**  
 A cloud service by Amazon Web Services, a subsidiary of Amazon.com, that converts text into lifelike speech.  
-**Account required**
+
 
 ### Google
+**Account required**  
 A cloud service by Google that converts text into speech.    
-**Account required**
+
 
 ## Contributing
 You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
