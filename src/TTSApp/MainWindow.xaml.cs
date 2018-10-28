@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -12,7 +14,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Common;
-using SoundpadRemote;
+using Sentry;
+using SoundpadConnector;
+using SoundpadConnector.Response;
 using Squirrel;
 using TTSAmazonPolly;
 using TTSApp.Properties;
@@ -29,7 +33,7 @@ namespace TTSApp
     {
         public const string UpdateUrl = "https://soundpadcontrol.blob.core.windows.net/soundpad-tts";
         private static readonly SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1);
-        private SoundpadRemoteControl _soundpad;
+        private Soundpad _soundpad;
 
 
         public MainWindow()
@@ -62,7 +66,7 @@ namespace TTSApp
 
         private async Task InitializeSoundpad()
         {
-            _soundpad = new SoundpadRemoteControl {
+            _soundpad = new Soundpad {
                 AutoReconnect = true
             };
             _soundpad.StatusChanged += SoundpadOnStatusChanged;
@@ -116,7 +120,12 @@ namespace TTSApp
             await SemaphoreSlim.WaitAsync();
             try
             {
-                var fileName = Regex.Replace(InputTextBox.Text, @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
+                var uniqueId = Guid.NewGuid().ToString().Replace("-", "").Clip(10);
+
+
+                // Sanitize Filename
+                var fileName = Regex.Replace(InputTextBox.Text.Clip(20), @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
+                fileName = $"{fileName}_{uniqueId}";
                 var filePath = Path.GetTempPath() + $"{fileName}.{Model.SelectedProvider.FileExtension}";
 
                 var stream =
@@ -134,9 +143,9 @@ namespace TTSApp
                 while (true)
                 {
                     var result = await _soundpad.GetSoundFileCount();
-                    if (result.Result != countResult.Result)
+                    if (result.Value != countResult.Value)
                     {
-                        count = (int) result.Result;
+                        count = (int) result.Value;
                         break;
                     }
                 }
@@ -145,7 +154,7 @@ namespace TTSApp
                 while (true)
                 {
                     var status = await _soundpad.GetPlayStatus();
-                    if (status.PlayStatus == PlayStatus.Playing) break;
+                    if (status.Value == PlayStatus.Playing) break;
                 }
 
 
@@ -156,8 +165,9 @@ namespace TTSApp
                     await _soundpad.RemoveSelectedEntries();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                SentrySdk.CaptureException(e);
                 MessageBox.Show("There was an error during playback", "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -184,6 +194,7 @@ namespace TTSApp
             }
             catch (Exception ex)
             {
+                SentrySdk.CaptureException(ex);
                 MessageBox.Show("Provider is not available", "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 await Model.Reset();

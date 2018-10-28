@@ -11,11 +11,13 @@ using Common;
 
 namespace TTSUniversal
 {
+    /// <summary>
+    /// HowTo Call UWP APIs: https://docs.microsoft.com/de-de/windows/uwp/porting/desktop-to-uwp-enhance
+    /// </summary>
     public class UniversalTextToSpeechProvider : ITextToSpeechProvider
     {
         public string Name => "Universal";
         public string FileExtension => "wav";
-
         public bool IsAvailable => Task.Run(CheckAvailable).Result;
 
         public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text)
