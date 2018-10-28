@@ -258,6 +258,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="release.bat" />
     <None Include="TTSApp.nuspec">
       <SubType>Designer</SubType>
     </None>
