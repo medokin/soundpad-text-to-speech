@@ -1,0 +1,1 @@
+squirrel --releasify=TTSApp/bin/Release/TTSApp.1.0.12.nupkg --framework-version=net472 --icon="../logo.ico" --setupIcon="../logo.ico" --no-delta --no-msi
