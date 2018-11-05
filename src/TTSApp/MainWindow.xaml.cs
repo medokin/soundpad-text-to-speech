@@ -114,7 +114,7 @@ namespace TTSApp
                 : new SolidColorBrush(Colors.Red);
         }
 
-        private async Task Play()
+        private async Task Play(string text)
         {
             PlaySoundpadButton.IsEnabled = false;
             await SemaphoreSlim.WaitAsync();
@@ -124,12 +124,12 @@ namespace TTSApp
 
 
                 // Sanitize Filename
-                var fileName = Regex.Replace(InputTextBox.Text.Clip(20), @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
+                var fileName = Regex.Replace(text.Clip(20), @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
                 fileName = $"{fileName}_{uniqueId}";
                 var filePath = Path.GetTempPath() + $"{fileName}.{Model.SelectedProvider.FileExtension}";
 
                 var stream =
-                    await Model.SelectedProvider.SynthesizeTextToStreamAsync(Model.SelectedVoice, InputTextBox.Text);
+                    await Model.SelectedProvider.SynthesizeTextToStreamAsync(Model.SelectedVoice, text);
 
                 using (var fileStream = File.Create(filePath))
                 {
@@ -213,8 +213,14 @@ namespace TTSApp
                 return;
             }
 
+            
+            var text = InputTextBox.Text;
+            if (Settings.Default.EmptyTextAfterPlay)
+            {
+                InputTextBox.Text = "";
+            }
             InputTextBox.Focus();
-            await Play();
+            await Play(text);
         }
 
         private void MenuItemQuit_OnClick(object sender, RoutedEventArgs e)
@@ -233,11 +239,11 @@ namespace TTSApp
             about.ShowDialog();
         }
 
-        private async void InputTextBox_OnKeyUp(object sender, KeyEventArgs e)
+        private void InputTextBox_OnKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                await Play();
+                PlaySoundpadButton_Click(sender, e);
             }
         }
 

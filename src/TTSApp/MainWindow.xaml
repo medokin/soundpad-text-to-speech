@@ -7,7 +7,7 @@
         xmlns:p="clr-namespace:TTSApp.Properties"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Text-To-Speech for Soundpad" Width="Auto" Height="Auto" SizeToContent="WidthAndHeight" MinWidth="400">
+        Title="Text-To-Speech for Soundpad" Width="304.942" Height="302.488" SizeToContent="Height" MinWidth="400">
 
     <Window.DataContext>
         <ttsApp:MainWindowViewModel></ttsApp:MainWindowViewModel>
@@ -36,7 +36,7 @@
                     <iconPacks:PackIconMaterial x:Name="UpdateSpinner" VerticalAlignment="Center" Kind="DotsHorizontal" Spin="True" Margin="0,0,10,0" Visibility="Hidden"/>
                     <TextBlock x:Name="VersionTextBlock" Text="Version"/>
                 </StackPanel>
-                
+
             </StatusBarItem>
         </StatusBar>
 
@@ -44,7 +44,8 @@
 
             <StackPanel>
                 <TextBlock HorizontalAlignment="Stretch" Text="Enter your Text" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <TextBox x:Name="InputTextBox" HorizontalAlignment="Stretch" Margin="0,10,0,0" Text="" VerticalAlignment="Top" KeyUp="InputTextBox_OnKeyUp"/>
+                <TextBox x:Name="InputTextBox" Margin="0,10,0,0" Text="" VerticalAlignment="Top" KeyUp="InputTextBox_OnKeyUp"
+                         TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
             </StackPanel>
 
             <Grid Margin="0,10,0,0">
@@ -73,6 +74,15 @@
                                       Margin="0,5,0,0"
                                       IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=PlayCaptureLine, Mode=TwoWay}" 
                                       Content="Play on Microphone" 
+                                      HorizontalAlignment="Left" 
+                                      VerticalAlignment="Top" 
+                                      Unchecked="SettingsCheckboxChanged" 
+                                      Checked="SettingsCheckboxChanged"
+                            />
+                            <CheckBox x:Name="EmptyTextAfterPlayCheckbox"
+                                      Margin="0,5,0,0"
+                                      IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=EmptyTextAfterPlay, Mode=TwoWay}" 
+                                      Content="Empty Text after play" 
                                       HorizontalAlignment="Left" 
                                       VerticalAlignment="Top" 
                                       Unchecked="SettingsCheckboxChanged" 

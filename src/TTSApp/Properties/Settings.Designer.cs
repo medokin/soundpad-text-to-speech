@@ -118,5 +118,17 @@ namespace TTSApp.Properties {
                 this["PlayCaptureLine"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EmptyTextAfterPlay {
+            get {
+                return ((bool)(this["EmptyTextAfterPlay"]));
+            }
+            set {
+                this["EmptyTextAfterPlay"] = value;
+            }
+        }
     }
 }
