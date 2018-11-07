@@ -22,6 +22,7 @@
             <MenuItem Header="_Help">
                 <MenuItem Header="_Report an issue" Click="MenuItemReportAnIssue_OnClick" Icon="{iconPacks:Material Kind=Bug}"/>
                 <MenuItem Header="_Website" Click="MenuItemWebsite_OnClick" Icon="{iconPacks:Material Kind=Web}"/>
+                <MenuItem Header="_Donate" Click="MenuItemDonate_OnClick" Icon="{iconPacks:Material Kind=HomeCurrencyUsd}"/>
                 <MenuItem Header="_About" Click="MenuItemAbout_OnClick" Icon="{iconPacks:Material Kind=Information}"/>
             </MenuItem>
         </Menu>

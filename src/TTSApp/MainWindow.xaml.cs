@@ -267,6 +267,10 @@ namespace TTSApp
             Process.Start("https://github.com/medokin/soundpad-text-to-speech/issues/new");
         }
 
+        private void MenuItemDonate_OnClick(object sender, RoutedEventArgs e) {
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZBEPDYES8CEH8");
+        }
+
         public void BackupSettings()
         {
             try
