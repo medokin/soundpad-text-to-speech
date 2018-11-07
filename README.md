@@ -32,6 +32,8 @@ This programm only works with the full Version of <a href="https://store.steampo
 ## Installation
 You can download the installer here: [Setup.exe](https://soundpadcontrol.blob.core.windows.net/soundpad-tts/Setup.exe)
 
+[![Donate](https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZBEPDYES8CEH8)
+
 ## TTS-Provider
 
 ### Windows
