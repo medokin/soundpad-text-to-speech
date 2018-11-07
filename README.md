@@ -10,7 +10,7 @@
 
 
 ## Table of contents
-<a href="https://mathewsachin.github.io/Captura/screenshots"><img src="app.png" align="right"></a>
+<a href="https://github.com/medokin/soundpad-text-to-speech/blob/master/app.png"><img src="app.png" align="right"></a>
 
   * [Requirements](#requirements)
   * [Installation](#installation)

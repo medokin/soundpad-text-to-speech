@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +39,8 @@ namespace TTSApp
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            RestoreSettings();
         }
 
         public static MainWindowViewModel Model { get; set; }
@@ -66,7 +68,8 @@ namespace TTSApp
 
         private async Task InitializeSoundpad()
         {
-            _soundpad = new Soundpad {
+            _soundpad = new Soundpad
+            {
                 AutoReconnect = true
             };
             _soundpad.StatusChanged += SoundpadOnStatusChanged;
@@ -80,7 +83,7 @@ namespace TTSApp
                 UpdateSpinner.Visibility = Visibility.Visible;
                 VersionTextBlock.Text = "Checking for Updates...";
                 using (var mgr = new UpdateManager(UpdateUrl))
-                {                                  
+                {
                     var update = await mgr.CheckForUpdate(true);
                     VersionTextBlock.Text = update.CurrentlyInstalledVersion.Version.ToString();
                     if (update.CurrentlyInstalledVersion.EntryAsString != update.FutureReleaseEntry.EntryAsString)
@@ -88,6 +91,7 @@ namespace TTSApp
                         VersionTextBlock.Text = "Installing Updates...";
                         await mgr.UpdateApp();
                         VersionTextBlock.Text = "Updates installed. Please restart.";
+                        BackupSettings();
                     }
                 }
             }
@@ -213,12 +217,9 @@ namespace TTSApp
                 return;
             }
 
-            
+
             var text = InputTextBox.Text;
-            if (Settings.Default.EmptyTextAfterPlay)
-            {
-                InputTextBox.Text = "";
-            }
+            if (Settings.Default.EmptyTextAfterPlay) InputTextBox.Text = "";
             InputTextBox.Focus();
             await Play(text);
         }
@@ -234,20 +235,19 @@ namespace TTSApp
             settings.ShowDialog();
         }
 
-        private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e) {
+        private void MenuItemAbout_OnClick(object sender, RoutedEventArgs e)
+        {
             var about = new AboutWindow();
             about.ShowDialog();
         }
 
         private void InputTextBox_OnKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                PlaySoundpadButton_Click(sender, e);
-            }
+            if (e.Key == Key.Enter) PlaySoundpadButton_Click(sender, e);
         }
 
-        private void SettingsCheckboxChanged(object sender, RoutedEventArgs e) {
+        private void SettingsCheckboxChanged(object sender, RoutedEventArgs e)
+        {
             Settings.Default.Save();
         }
 
@@ -259,20 +259,73 @@ namespace TTSApp
 
         private void MenuItemWebsite_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/medokin/soundpad-text-to-speech");
+            Process.Start("https://github.com/medokin/soundpad-text-to-speech");
         }
 
         private void MenuItemReportAnIssue_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/medokin/soundpad-text-to-speech/issues/new");
+            Process.Start("https://github.com/medokin/soundpad-text-to-speech/issues/new");
+        }
+
+        public void BackupSettings()
+        {
+            try
+            {
+                var settingsFile = ConfigurationManager
+                    .OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+                var destination = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\..\\last.config";
+                File.Copy(settingsFile, destination, true);
+            }
+            catch (Exception e) 
+            {
+            }
+        }
+
+        private void RestoreSettings()
+        {
+            //Restore settings after application update            
+            var destFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal)
+                .FilePath;
+            var sourceFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\..\\last.config";
+            // Check if we have settings that we need to restore
+            if (!File.Exists(sourceFile)) return;
+            // Create directory as needed
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(destFile));
+            }
+            catch (Exception)
+            {
+            }
+
+            // Copy our backup file in place 
+            try
+            {
+                File.Copy(sourceFile, destFile, true);
+                Settings.Default.Reload();
+            }
+            catch (Exception)
+            {
+            }
+
+            // Delete backup file
+            try
+            {
+                File.Delete(sourceFile);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public MainWindowViewModel()
-        {
-        }
+        public ITextToSpeechProvider SelectedProvider { get; set; }
+        public IList<ITextToSpeechProvider> ProviderList { get; set; }
+        public IList<IVoice> VoiceList { get; set; }
+        public IVoice SelectedVoice { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void ReloadProviderList()
         {
@@ -286,12 +339,6 @@ namespace TTSApp
 
             OnPropertyChanged(nameof(ProviderList));
         }
-
-        public ITextToSpeechProvider SelectedProvider { get; set; }
-        public IList<ITextToSpeechProvider> ProviderList { get; set; }
-        public IList<IVoice> VoiceList { get; set; }
-        public IVoice SelectedVoice { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -351,7 +398,8 @@ namespace TTSApp
 
 
             var lastUsedProvider =
-                ProviderList.FirstOrDefault(provider => provider.Name == Settings.Default.LastProvider && provider.IsAvailable);
+                ProviderList.FirstOrDefault(provider =>
+                    provider.Name == Settings.Default.LastProvider && provider.IsAvailable);
 
             return lastUsedProvider ?? ProviderList.First();
         }

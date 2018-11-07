@@ -93,7 +93,7 @@
                 </StackPanel>
 
                 <Button x:Name="PlaySoundpadButton" 
-                        Content="Play in Soudpad" 
+                        Content="Play in Soundpad" 
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Top" 
                         Width="150" 
