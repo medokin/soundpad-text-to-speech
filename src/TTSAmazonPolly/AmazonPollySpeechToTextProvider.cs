@@ -22,11 +22,13 @@ namespace TTSAmazonPolly
         public string Name => "Amazon Polly";
         public string FileExtension => "wav";
 
-        public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text) {
+        public async Task<Stream> SynthesizeTextToStreamAsync(IVoice voice, string text)
+        {
+            var pollyVoice = (AmazonPollyVoice) voice;
             var request = new SynthesizeSpeechRequest()
             {
                 Text = text,
-                VoiceId = VoiceId.FindValue(voice.Name),
+                VoiceId = VoiceId.FindValue(pollyVoice.VoiceId),
                 OutputFormat = OutputFormat.Mp3
             };
 
@@ -45,7 +47,8 @@ namespace TTSAmazonPolly
                 {
                     Language = voice.LanguageName,
                     Name = voice.Name,
-                    Gender = (Gender)Enum.Parse(typeof(Gender), voice.Gender.ToString())
+                    Gender = (Gender)Enum.Parse(typeof(Gender), voice.Gender.ToString()),
+                    VoiceId = voice.Id
                 };
 
                 return result;

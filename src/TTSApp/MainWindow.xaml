@@ -127,7 +127,7 @@
                 </ComboBox>
 
                 <TextBlock HorizontalAlignment="Stretch" Margin="0,10,0,0" Text="Voice" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <ComboBox x:Name="VoiceComboBox" ItemsSource="{Binding VoiceList}" SelectedItem="{Binding SelectedVoice}" DisplayMemberPath="Name" HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" SelectionChanged="VoiceComboBox_SelectionChanged">
+                <ComboBox x:Name="VoiceComboBox" ItemsSource="{Binding VoiceList}" SelectedItem="{Binding SelectedVoice}" HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" SelectionChanged="VoiceComboBox_SelectionChanged">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="IsEnabled" Value="{Binding IsAvailable}"/>
