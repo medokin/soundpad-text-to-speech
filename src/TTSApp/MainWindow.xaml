@@ -61,6 +61,9 @@
                                       VerticalAlignment="Top" 
                                       Unchecked="SettingsCheckboxChanged" 
                                       Checked="SettingsCheckboxChanged"
+                                      IsEnabled="{Binding CanDeselectRemoveFile}"
+                                      ToolTipService.ShowOnDisabled="True"
+                                      ToolTip="Storage path must be set in settings"
                             />
                             <CheckBox x:Name="PlayRenderLineCheckbox"
                                       Margin="0,5,0,0"

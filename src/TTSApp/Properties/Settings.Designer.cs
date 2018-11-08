@@ -130,5 +130,17 @@ namespace TTSApp.Properties {
                 this["EmptyTextAfterPlay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SaveFilePath {
+            get {
+                return ((string)(this["SaveFilePath"]));
+            }
+            set {
+                this["SaveFilePath"] = value;
+            }
+        }
     }
 }

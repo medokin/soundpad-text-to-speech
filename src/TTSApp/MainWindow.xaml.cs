@@ -41,6 +41,21 @@ namespace TTSApp
         {
             InitializeComponent();
             RestoreSettings();
+            CheckSettings();
+        }
+
+        /// <summary>
+        /// Check and restore setting values if needed
+        /// </summary>
+        private void CheckSettings()
+        {
+            // Update 1.0.18 - Select DeleteFromSoundpadAfterPlay if file Path not set
+            if (!Settings.Default.DeleteFromSoundpadAfterPlay && !Directory.Exists(Settings.Default.SaveFilePath))
+            {
+                Settings.Default.DeleteFromSoundpadAfterPlay = true;
+            }
+
+            Settings.Default.Save();
         }
 
         public static MainWindowViewModel Model { get; set; }
@@ -73,7 +88,7 @@ namespace TTSApp
                 AutoReconnect = true
             };
             _soundpad.StatusChanged += SoundpadOnStatusChanged;
-            await _soundpad.ConnectAsync();
+            _soundpad.ConnectAsync();
         }
 
         private async Task CheckAndInstallUpdate()
@@ -113,6 +128,11 @@ namespace TTSApp
         private void UpdateButtomStatusBar()
         {
             FooterTextBlock.Text = _soundpad.ConnectionStatus.ToString();
+            if (_soundpad.ConnectionStatus != ConnectionStatus.Connected)
+            {
+                FooterTextBlock.Text= FooterTextBlock.Text + ". Is Soundpad running?";
+            }
+
             FooterTextBlock.Foreground = _soundpad.ConnectionStatus == ConnectionStatus.Connected
                 ? new SolidColorBrush(Colors.Black)
                 : new SolidColorBrush(Colors.Red);
@@ -129,8 +149,8 @@ namespace TTSApp
 
                 // Sanitize Filename
                 var fileName = Regex.Replace(text.Clip(20), @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
-                fileName = $"{fileName}_{uniqueId}";
-                var filePath = Path.GetTempPath() + $"{fileName}.{Model.SelectedProvider.FileExtension}";
+                fileName = $"{fileName}_{uniqueId}.{Model.SelectedProvider.FileExtension}";
+                var filePath = Path.Combine(GetSavePath(), fileName);
 
                 var stream =
                     await Model.SelectedProvider.SynthesizeTextToStreamAsync(Model.SelectedVoice, text);
@@ -180,6 +200,17 @@ namespace TTSApp
                 SemaphoreSlim.Release();
                 PlaySoundpadButton.IsEnabled = true;
             }
+        }
+
+        private string GetSavePath()
+        {
+            if (!Settings.Default.DeleteFromSoundpadAfterPlay && Directory.Exists(Settings.Default.SaveFilePath))
+            {
+                return Settings.Default.SaveFilePath;
+            }
+
+            return Path.GetTempPath();
+
         }
 
         private void VoiceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -254,7 +285,7 @@ namespace TTSApp
         private void ProviderHelpIcon_OnClick(object sender, RoutedEventArgs e)
         {
             var window = new OptionsWindow();
-            window.ShowDialog();
+            window.ShowProviderTab();
         }
 
         private void MenuItemWebsite_OnClick(object sender, RoutedEventArgs e)
@@ -329,6 +360,7 @@ namespace TTSApp
         public IList<ITextToSpeechProvider> ProviderList { get; set; }
         public IList<IVoice> VoiceList { get; set; }
         public IVoice SelectedVoice { get; set; }
+        public bool CanDeselectRemoveFile { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void ReloadProviderList()
@@ -376,6 +408,9 @@ namespace TTSApp
 
         public async Task Reset()
         {
+            CanDeselectRemoveFile = Directory.Exists(Settings.Default.SaveFilePath);
+            OnPropertyChanged(nameof(CanDeselectRemoveFile));
+
             ReloadProviderList();
             await SetProvider(await DefaultProvider());
         }
@@ -389,18 +424,6 @@ namespace TTSApp
 
         public async Task<ITextToSpeechProvider> DefaultProvider()
         {
-            //var tasks = ProviderList.Select(async provider => new
-            // {
-            //    Item = provider,
-            //    IsAvailable = await provider.IsAvailable
-            //});
-
-            //var tuples = await Task.WhenAll(tasks);
-            //var lastUsedProvider =
-            //    tuples.Where(provider => provider.Item.Name == Settings.Default.LastProvider && provider.IsAvailable)
-            //        .Select(arg => arg.Item).FirstOrDefault();
-
-
             var lastUsedProvider =
                 ProviderList.FirstOrDefault(provider =>
                     provider.Name == Settings.Default.LastProvider && provider.IsAvailable);

@@ -10,57 +10,85 @@
         mc:Ignorable="d"
         Title="Settings" Height="550" Width="500" MinHeight="350" MinWidth="500">
     <Grid>
-        <StackPanel Margin="10,10,10,10">
+        <StackPanel>
+            <TabControl Name="SettingsTabControl">
+                <TabItem Header="General">
+                    <StackPanel Margin="10,10,10,10">
+                        <StackPanel Margin="0,10,0,0">
+                            <TextBlock HorizontalAlignment="Stretch" Text="File storage path" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Amazon Polly" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button x:Name="AmazonHelpIcon" 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" Width="Auto" Margin="0,10,0,0" VerticalAlignment="Top"
+                                         Text="{Binding Source={x:Static p:Settings.Default}, Path=SaveFilePath, Mode=TwoWay}" IsReadOnly="True"/>
+
+                                <Button Name="FilePathButton" Grid.Column="1" Margin="10,10,0,10" Content="Select Directory" Click="SelectFilePathButton_OnClick" Width="Auto"/>
+                            </Grid>
+
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Provider">
+                    <StackPanel Margin="10,10,10,10">
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Amazon Polly" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <Button x:Name="AmazonHelpIcon" 
                         Content="{iconPacks:Material Information, Width=16, Height=16}" 
                         ToolTip="Click for more info" 
                         VerticalAlignment="Top" 
                         Click="AmazonHelpIcon_OnClick" 
                         BorderBrush="White" 
                         Background="White"/>
-            </StackPanel>
+                        </StackPanel>
 
-            <Border BorderBrush="DarkGray" BorderThickness="1">
-                <StackPanel Margin="10,10,10,10">
-                    <StackPanel>
-                        <TextBlock HorizontalAlignment="Stretch" Text="AccessKey" TextWrapping="Wrap" />
-                        <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" 
+                        <Border BorderBrush="DarkGray" BorderThickness="1">
+                            <StackPanel Margin="10,10,10,10">
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Stretch" Text="AccessKey" TextWrapping="Wrap" />
+                                    <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" 
                             Text="{Binding Source={x:Static p:Settings.Default}, Path=AmazonAccessKey, Mode=TwoWay}"/>
-                    </StackPanel>
+                                </StackPanel>
 
-                    <StackPanel Margin="0,10,0,0">
-                        <TextBlock HorizontalAlignment="Stretch" Text="SecretKey" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top"
+                                <StackPanel Margin="0,10,0,0">
+                                    <TextBlock HorizontalAlignment="Stretch" Text="SecretKey" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                                    <TextBox HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top"
                                  Text="{Binding Source={x:Static p:Settings.Default}, Path=AmazonSecretKey, Mode=TwoWay}"/>
-                    </StackPanel>
-                </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
 
-            </Border>
+                        </Border>
 
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Google" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button x:Name="GoogleHelpIcon" 
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Google" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <Button x:Name="GoogleHelpIcon" 
                         Content="{iconPacks:Material Information, Width=16, Height=16}" 
                         ToolTip="Click for more info" 
                         VerticalAlignment="Top" 
                         Click="GoogleHelpIcon_OnClick" 
                         BorderBrush="White" 
                         Background="White"/>
-            </StackPanel>
+                        </StackPanel>
 
-            <Border  BorderBrush="DarkGray" BorderThickness="1">
-                <StackPanel Margin="10,10,10,10">
-                    <TextBlock HorizontalAlignment="Stretch" Text="JSON file content" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxLines="10"
+                        <Border  BorderBrush="DarkGray" BorderThickness="1">
+                            <StackPanel Margin="10,10,10,10">
+                                <TextBlock HorizontalAlignment="Stretch" Text="JSON file content" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                                <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxLines="10"
                               Text="{Binding Source={x:Static p:Settings.Default}, Path=GoogleJson, Mode=TwoWay}" Height="215"/>
-                </StackPanel>
-            </Border>
-            <Button Margin="0,10,0,0" Content="Save and Close" Click="Button_Click"/>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+
+            <Button Margin="10,10,10,10" Content="Save and Close" Click="Button_Click"/>
 
         </StackPanel>
+
 
     </Grid>
 </Window>
