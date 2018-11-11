@@ -8,14 +8,14 @@
         xmlns:draw="clr-namespace:System.Drawing;assembly=System.Drawing"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Settings" Height="550" Width="500" MinHeight="350" MinWidth="500">
+        Title="{x:Static p:Resources.OptionsWindowTitle}" Height="565.865" Width="500" MinHeight="350" MinWidth="500">
     <Grid>
         <StackPanel>
             <TabControl Name="SettingsTabControl">
-                <TabItem Header="General">
+                <TabItem Header="{x:Static p:Resources.OptionsWindowTabGeneral}">
                     <StackPanel Margin="10,10,10,10">
                         <StackPanel Margin="0,10,0,0">
-                            <TextBlock HorizontalAlignment="Stretch" Text="File storage path" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <TextBlock HorizontalAlignment="Stretch" Text="{x:Static p:Resources.OptionsWindowFilePathLabel}" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -25,20 +25,20 @@
                                 <TextBox Grid.Column="0" Width="Auto" Margin="0,10,0,0" VerticalAlignment="Top"
                                          Text="{Binding Source={x:Static p:Settings.Default}, Path=SaveFilePath, Mode=TwoWay}" IsReadOnly="True"/>
 
-                                <Button Name="FilePathButton" Grid.Column="1" Margin="10,10,0,10" Content="Select Directory" Click="SelectFilePathButton_OnClick" Width="Auto"/>
+                                <Button Name="FilePathButton" Grid.Column="1" Margin="10,10,0,10" Content="{x:Static p:Resources.OptionsWindowFilePathButton}" Click="SelectFilePathButton_OnClick" Width="Auto"/>
                             </Grid>
 
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Provider">
+                <TabItem Header="{x:Static p:Resources.OptionsWindowTabProvider}">
                     <StackPanel Margin="10,10,10,10">
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Amazon Polly" TextWrapping="Wrap" VerticalAlignment="Top"/>
                             <Button x:Name="AmazonHelpIcon" 
                         Content="{iconPacks:Material Information, Width=16, Height=16}" 
-                        ToolTip="Click for more info" 
+                        ToolTip="{x:Static p:Resources.OptionsWindowMoreInfo}" 
                         VerticalAlignment="Top" 
                         Click="AmazonHelpIcon_OnClick" 
                         BorderBrush="White" 
@@ -66,7 +66,7 @@
                             <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Google" TextWrapping="Wrap" VerticalAlignment="Top"/>
                             <Button x:Name="GoogleHelpIcon" 
                         Content="{iconPacks:Material Information, Width=16, Height=16}" 
-                        ToolTip="Click for more info" 
+                        ToolTip="{x:Static p:Resources.OptionsWindowMoreInfo}" 
                         VerticalAlignment="Top" 
                         Click="GoogleHelpIcon_OnClick" 
                         BorderBrush="White" 
@@ -75,7 +75,7 @@
 
                         <Border  BorderBrush="DarkGray" BorderThickness="1">
                             <StackPanel Margin="10,10,10,10">
-                                <TextBlock HorizontalAlignment="Stretch" Text="JSON file content" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                                <TextBlock HorizontalAlignment="Stretch" Text="JSON" TextWrapping="Wrap" VerticalAlignment="Top"/>
                                 <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxLines="10"
                               Text="{Binding Source={x:Static p:Settings.Default}, Path=GoogleJson, Mode=TwoWay}" Height="215"/>
                             </StackPanel>
@@ -85,7 +85,7 @@
                 </TabItem>
             </TabControl>
 
-            <Button Margin="10,10,10,10" Content="Save and Close" Click="Button_Click"/>
+            <Button Margin="10,10,10,10" Content="{x:Static p:Resources.OptionsWindowSaveButton}" Click="Button_Click"/>
 
         </StackPanel>
 

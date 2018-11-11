@@ -22,7 +22,7 @@ namespace TTSApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace TTSApp.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TTSApp.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,291 @@ namespace TTSApp.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete from Soundpad after play.
+        /// </summary>
+        public static string MainWindowDeleteFromSoundpadCheckbox {
+            get {
+                return ResourceManager.GetString("MainWindowDeleteFromSoundpadCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty text after play.
+        /// </summary>
+        public static string MainWindowEmptyTextAfterPlayCheckbox {
+            get {
+                return ResourceManager.GetString("MainWindowEmptyTextAfterPlayCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playback options.
+        /// </summary>
+        public static string MainWindowExpander {
+            get {
+                return ResourceManager.GetString("MainWindowExpander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Soundpad running?.
+        /// </summary>
+        public static string MainWindowFooterSoundpadRunning {
+            get {
+                return ResourceManager.GetString("MainWindowFooterSoundpadRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your text.
+        /// </summary>
+        public static string MainWindowInputTextBoxLabel {
+            get {
+                return ResourceManager.GetString("MainWindowInputTextBoxLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _File.
+        /// </summary>
+        public static string MainWindowMenuFile {
+            get {
+                return ResourceManager.GetString("MainWindowMenuFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string MainWindowMenuFileQuit {
+            get {
+                return ResourceManager.GetString("MainWindowMenuFileQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string MainWindowMenuFileSettings {
+            get {
+                return ResourceManager.GetString("MainWindowMenuFileSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Help.
+        /// </summary>
+        public static string MainWindowMenuHelp {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string MainWindowMenuHelpAbout {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelpAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donate.
+        /// </summary>
+        public static string MainWindowMenuHelpDonate {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelpDonate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report an issue.
+        /// </summary>
+        public static string MainWindowMenuHelpReportIssue {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelpReportIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string MainWindowMenuHelpWebsite {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelpWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play on microphone.
+        /// </summary>
+        public static string MainWindowPlayCaptureLineCheckbox {
+            get {
+                return ResourceManager.GetString("MainWindowPlayCaptureLineCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play on speakers.
+        /// </summary>
+        public static string MainWindowPlayRenderLineCheckbox {
+            get {
+                return ResourceManager.GetString("MainWindowPlayRenderLineCheckbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play in Soundpad.
+        /// </summary>
+        public static string MainWindowPlaySoundpadButton {
+            get {
+                return ResourceManager.GetString("MainWindowPlaySoundpadButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open settings.
+        /// </summary>
+        public static string MainWindowProviderHelpIcon {
+            get {
+                return ResourceManager.GetString("MainWindowProviderHelpIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider.
+        /// </summary>
+        public static string MainWindowProviderLabel {
+            get {
+                return ResourceManager.GetString("MainWindowProviderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text-To-Speech for Soundpad.
+        /// </summary>
+        public static string MainWindowTitle {
+            get {
+                return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for updates....
+        /// </summary>
+        public static string MainWindowUpdateChecking {
+            get {
+                return ResourceManager.GetString("MainWindowUpdateChecking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating error.
+        /// </summary>
+        public static string MainWindowUpdateError {
+            get {
+                return ResourceManager.GetString("MainWindowUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates installed. Please restart..
+        /// </summary>
+        public static string MainWindowUpdateInstalled {
+            get {
+                return ResourceManager.GetString("MainWindowUpdateInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing updates....
+        /// </summary>
+        public static string MainWindowUpdateInstalling {
+            get {
+                return ResourceManager.GetString("MainWindowUpdateInstalling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voice.
+        /// </summary>
+        public static string MainWindowVoiceLabel {
+            get {
+                return ResourceManager.GetString("MainWindowVoiceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select directory.
+        /// </summary>
+        public static string OptionsWindowFilePathButton {
+            get {
+                return ResourceManager.GetString("OptionsWindowFilePathButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File storage path.
+        /// </summary>
+        public static string OptionsWindowFilePathLabel {
+            get {
+                return ResourceManager.GetString("OptionsWindowFilePathLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click for more info.
+        /// </summary>
+        public static string OptionsWindowMoreInfo {
+            get {
+                return ResourceManager.GetString("OptionsWindowMoreInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save &amp; Close.
+        /// </summary>
+        public static string OptionsWindowSaveButton {
+            get {
+                return ResourceManager.GetString("OptionsWindowSaveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string OptionsWindowTabGeneral {
+            get {
+                return ResourceManager.GetString("OptionsWindowTabGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider.
+        /// </summary>
+        public static string OptionsWindowTabProvider {
+            get {
+                return ResourceManager.GetString("OptionsWindowTabProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string OptionsWindowTitle {
+            get {
+                return ResourceManager.GetString("OptionsWindowTitle", resourceCulture);
             }
         }
     }

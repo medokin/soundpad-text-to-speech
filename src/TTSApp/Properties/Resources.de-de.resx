@@ -118,96 +118,96 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MainWindowDeleteFromSoundpadCheckbox" xml:space="preserve">
-    <value>Delete from Soundpad after play</value>
+    <value>Sound nach dem Abspielen entfernen</value>
   </data>
   <data name="MainWindowEmptyTextAfterPlayCheckbox" xml:space="preserve">
-    <value>Empty text after play</value>
+    <value>Text nach dem Abspielen entfernen</value>
   </data>
   <data name="MainWindowExpander" xml:space="preserve">
-    <value>Playback options</value>
+    <value>Abspieloptionen</value>
   </data>
   <data name="MainWindowFooterSoundpadRunning" xml:space="preserve">
-    <value>Is Soundpad running?</value>
+    <value>Läuft Soundpad?</value>
   </data>
   <data name="MainWindowInputTextBoxLabel" xml:space="preserve">
-    <value>Enter your text</value>
+    <value>Text eingeben</value>
   </data>
   <data name="MainWindowMenuFile" xml:space="preserve">
-    <value>_File</value>
+    <value>_Datei</value>
   </data>
   <data name="MainWindowMenuFileQuit" xml:space="preserve">
-    <value>Quit</value>
+    <value>Beenden</value>
   </data>
   <data name="MainWindowMenuFileSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="MainWindowMenuHelp" xml:space="preserve">
-    <value>_Help</value>
+    <value>_Hilfe</value>
   </data>
   <data name="MainWindowMenuHelpAbout" xml:space="preserve">
-    <value>About</value>
+    <value>Über</value>
   </data>
   <data name="MainWindowMenuHelpDonate" xml:space="preserve">
-    <value>Donate</value>
+    <value>Spenden</value>
   </data>
   <data name="MainWindowMenuHelpReportIssue" xml:space="preserve">
-    <value>Report an issue</value>
+    <value>Problem melden</value>
   </data>
   <data name="MainWindowMenuHelpWebsite" xml:space="preserve">
-    <value>Website</value>
+    <value>Webseite</value>
   </data>
   <data name="MainWindowPlayCaptureLineCheckbox" xml:space="preserve">
-    <value>Play on microphone</value>
+    <value>Abspielen auf Mikrofon</value>
   </data>
   <data name="MainWindowPlayRenderLineCheckbox" xml:space="preserve">
-    <value>Play on speakers</value>
+    <value>Abspielen auf Lautsprecher</value>
   </data>
   <data name="MainWindowPlaySoundpadButton" xml:space="preserve">
-    <value>Play in Soundpad</value>
+    <value>In Soundpad abspielen</value>
   </data>
   <data name="MainWindowProviderHelpIcon" xml:space="preserve">
-    <value>Open settings</value>
+    <value>Optionen öffnen</value>
   </data>
   <data name="MainWindowProviderLabel" xml:space="preserve">
-    <value>Provider</value>
+    <value>Anbieter</value>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
-    <value>Text-To-Speech for Soundpad</value>
+    <value>Text-To-Speech für Soundpad</value>
   </data>
   <data name="MainWindowUpdateChecking" xml:space="preserve">
-    <value>Checking for updates...</value>
+    <value>Prüfe nach Updates...</value>
   </data>
   <data name="MainWindowUpdateError" xml:space="preserve">
-    <value>Updating error</value>
+    <value>Fehler beim Update</value>
   </data>
   <data name="MainWindowUpdateInstalled" xml:space="preserve">
-    <value>Updates installed. Please restart.</value>
+    <value>Update ausgeführt. Bitte neustarten.</value>
   </data>
   <data name="MainWindowUpdateInstalling" xml:space="preserve">
-    <value>Installing updates...</value>
+    <value>Installiere Updates...</value>
   </data>
   <data name="MainWindowVoiceLabel" xml:space="preserve">
-    <value>Voice</value>
+    <value>Stimme</value>
   </data>
   <data name="OptionsWindowFilePathButton" xml:space="preserve">
-    <value>Select directory</value>
+    <value>Ordner auswählen</value>
   </data>
   <data name="OptionsWindowFilePathLabel" xml:space="preserve">
-    <value>File storage path</value>
+    <value>Dateispeicherpfad</value>
   </data>
   <data name="OptionsWindowMoreInfo" xml:space="preserve">
-    <value>Click for more info</value>
+    <value>Klick für mehr Infos</value>
   </data>
   <data name="OptionsWindowSaveButton" xml:space="preserve">
-    <value>Save &amp; Close</value>
+    <value>Speichern und Schließen</value>
   </data>
   <data name="OptionsWindowTabGeneral" xml:space="preserve">
-    <value>General</value>
+    <value>Allgemein</value>
   </data>
   <data name="OptionsWindowTabProvider" xml:space="preserve">
-    <value>Provider</value>
+    <value>Anbieter</value>
   </data>
   <data name="OptionsWindowTitle" xml:space="preserve">
-    <value>Options</value>
+    <value>Optionen</value>
   </data>
 </root>

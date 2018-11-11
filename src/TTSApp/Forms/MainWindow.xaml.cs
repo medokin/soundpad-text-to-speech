@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -33,22 +34,6 @@ namespace TTSApp.Forms
         public MainWindow()
         {
             InitializeComponent();
-            RestoreSettings();
-            CheckSettings();
-        }
-
-        /// <summary>
-        /// Check and restore setting values if needed
-        /// </summary>
-        private void CheckSettings()
-        {
-            // Update 1.0.18 - Select DeleteFromSoundpadAfterPlay if file Path not set
-            if (!Settings.Default.DeleteFromSoundpadAfterPlay && !Directory.Exists(Settings.Default.SaveFilePath))
-            {
-                Settings.Default.DeleteFromSoundpadAfterPlay = true;
-            }
-
-            Settings.Default.Save();
         }
 
         public static MainWindowViewModel Model { get; set; }
@@ -89,23 +74,23 @@ namespace TTSApp.Forms
             try
             {
                 UpdateSpinner.Visibility = Visibility.Visible;
-                VersionTextBlock.Text = "Checking for Updates...";
+                VersionTextBlock.Text = Properties.Resources.MainWindowUpdateChecking;
                 using (var mgr = new UpdateManager(UpdateUrl))
                 {
                     var update = await mgr.CheckForUpdate(true);
                     VersionTextBlock.Text = update.CurrentlyInstalledVersion.Version.ToString();
                     if (update.CurrentlyInstalledVersion.EntryAsString != update.FutureReleaseEntry.EntryAsString)
                     {
-                        VersionTextBlock.Text = "Installing Updates...";
+                        VersionTextBlock.Text = Properties.Resources.MainWindowUpdateInstalling;
                         await mgr.UpdateApp();
-                        VersionTextBlock.Text = "Updates installed. Please restart.";
+                        VersionTextBlock.Text = Properties.Resources.MainWindowUpdateInstalled;
                         BackupSettings();
                     }
                 }
             }
             catch (Exception)
             {
-                VersionTextBlock.Text = "Error checking updates.";
+                VersionTextBlock.Text = Properties.Resources.MainWindowUpdateError;
             }
             finally
             {
@@ -123,7 +108,7 @@ namespace TTSApp.Forms
             FooterTextBlock.Text = _soundpad.ConnectionStatus.ToString();
             if (_soundpad.ConnectionStatus != ConnectionStatus.Connected)
             {
-                FooterTextBlock.Text= FooterTextBlock.Text + ". Is Soundpad running?";
+                FooterTextBlock.Text= FooterTextBlock.Text + $". {Properties.Resources.MainWindowFooterSoundpadRunning}";
             }
 
             FooterTextBlock.Foreground = _soundpad.ConnectionStatus == ConnectionStatus.Connected
@@ -305,43 +290,6 @@ namespace TTSApp.Forms
                 File.Copy(settingsFile, destination, true);
             }
             catch (Exception e) 
-            {
-            }
-        }
-
-        private void RestoreSettings()
-        {
-            //Restore settings after application update            
-            var destFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal)
-                .FilePath;
-            var sourceFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\..\\last.config";
-            // Check if we have settings that we need to restore
-            if (!File.Exists(sourceFile)) return;
-            // Create directory as needed
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(destFile));
-            }
-            catch (Exception)
-            {
-            }
-
-            // Copy our backup file in place 
-            try
-            {
-                File.Copy(sourceFile, destFile, true);
-                Settings.Default.Reload();
-            }
-            catch (Exception)
-            {
-            }
-
-            // Delete backup file
-            try
-            {
-                File.Delete(sourceFile);
-            }
-            catch (Exception)
             {
             }
         }

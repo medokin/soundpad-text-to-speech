@@ -142,5 +142,17 @@ namespace TTSApp.Properties {
                 this["SaveFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(Default)")]
+        public global::System.Globalization.CultureInfo CultureInfo {
+            get {
+                return ((global::System.Globalization.CultureInfo)(this["CultureInfo"]));
+            }
+            set {
+                this["CultureInfo"] = value;
+            }
+        }
     }
 }
