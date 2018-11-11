@@ -62,22 +62,50 @@
 
                         </Border>
 
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="IBM Watson" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <Button x:Name="WatsonHelpIcon" 
+                                    Content="{iconPacks:Material Information, Width=16, Height=16}" 
+                                    ToolTip="{x:Static p:Resources.OptionsWindowMoreInfo}" 
+                                    VerticalAlignment="Top" 
+                                    Click="WatsonHelpIcon_OnClick" 
+                                    BorderBrush="White" 
+                                    Background="White"/>
+                        </StackPanel>
+
+                        <Border BorderBrush="DarkGray" BorderThickness="1">
+                            <StackPanel Margin="10,10,10,10">
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Stretch" Text="ApiKey" TextWrapping="Wrap" />
+                                    <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" 
+                                              Text="{Binding Source={x:Static p:Settings.Default}, Path=WatsonApiKey, Mode=TwoWay}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,10,0,0">
+                                    <TextBlock HorizontalAlignment="Stretch" Text="ServiceUrl" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                                    <TextBox HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top"
+                                             Text="{Binding Source={x:Static p:Settings.Default}, Path=WatsonServiceUrl, Mode=TwoWay}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Border>
+
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                             <TextBlock Margin="0,2,10,0" HorizontalAlignment="Stretch" Text="Google" TextWrapping="Wrap" VerticalAlignment="Top"/>
                             <Button x:Name="GoogleHelpIcon" 
-                        Content="{iconPacks:Material Information, Width=16, Height=16}" 
-                        ToolTip="{x:Static p:Resources.OptionsWindowMoreInfo}" 
-                        VerticalAlignment="Top" 
-                        Click="GoogleHelpIcon_OnClick" 
-                        BorderBrush="White" 
-                        Background="White"/>
+                                Content="{iconPacks:Material Information, Width=16, Height=16}" 
+                                ToolTip="{x:Static p:Resources.OptionsWindowMoreInfo}" 
+                                VerticalAlignment="Top" 
+                                Click="GoogleHelpIcon_OnClick" 
+                                BorderBrush="White" 
+                                Background="White"/>
                         </StackPanel>
 
                         <Border  BorderBrush="DarkGray" BorderThickness="1">
                             <StackPanel Margin="10,10,10,10">
                                 <TextBlock HorizontalAlignment="Stretch" Text="JSON" TextWrapping="Wrap" VerticalAlignment="Top"/>
                                 <TextBox  HorizontalAlignment="Stretch" Margin="0,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MaxLines="10"
-                              Text="{Binding Source={x:Static p:Settings.Default}, Path=GoogleJson, Mode=TwoWay}" Height="215"/>
+                              Text="{Binding Source={x:Static p:Settings.Default}, Path=GoogleJson, Mode=TwoWay}" Height="80"/>
                             </StackPanel>
                         </Border>
 

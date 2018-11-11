@@ -66,5 +66,10 @@ namespace TTSApp.Forms {
                 return false;
             }
         }
+
+        private void WatsonHelpIcon_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.ibm.com/watson/services/text-to-speech/");
+        }
     }
 }

@@ -19,6 +19,7 @@
     * [Universal](#universal)
     * [Amazon Polly](#amazon-polly)
     * [Google](#google)
+    * [IBM Watson](#ibm-watson)
   * [Contributing](#contributing)
   * [License](#license)
   * [Special thanks](#special-thanks)
@@ -51,6 +52,11 @@ A cloud service by Amazon Web Services, a subsidiary of Amazon.com, that convert
 ### Google
 **Account required**  
 A cloud service by Google that converts text into speech.    
+
+
+### IBM Watson
+**Account required**  
+A cloud service by IBM that converts text into speech.   
 
 
 ## Contributing

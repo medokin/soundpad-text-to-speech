@@ -228,6 +228,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest">
@@ -260,6 +261,10 @@
     <ProjectReference Include="..\TTSUniversal\TTSUniversal.csproj">
       <Project>{1ea4618b-469a-43f3-a463-921e0cd2ca1f}</Project>
       <Name>TTSUniversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TTSWatson\TTSWatson.csproj">
+      <Project>{10be082b-19d4-45e3-8221-3ec8d898171a}</Project>
+      <Name>TTSWatson</Name>
     </ProjectReference>
     <ProjectReference Include="..\TTSWindows\TTSWindows.csproj">
       <Project>{9ef5bc0e-c7f9-4056-bfe8-cb3aa50bd242}</Project>

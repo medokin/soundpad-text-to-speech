@@ -154,5 +154,29 @@ namespace TTSApp.Properties {
                 this["CultureInfo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WatsonApiKey {
+            get {
+                return ((string)(this["WatsonApiKey"]));
+            }
+            set {
+                this["WatsonApiKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WatsonServiceUrl {
+            get {
+                return ((string)(this["WatsonServiceUrl"]));
+            }
+            set {
+                this["WatsonServiceUrl"] = value;
+            }
+        }
     }
 }

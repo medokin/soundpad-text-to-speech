@@ -9,6 +9,7 @@ using TTSAmazonPolly;
 using TTSApp.Properties;
 using TTSGoogle;
 using TTSUniversal;
+using TTSWatson;
 using TTSWindows;
 
 namespace TTSApp.Forms
@@ -29,7 +30,8 @@ namespace TTSApp.Forms
                 new WindowsSpeechToTextProvider(),
                 new UniversalTextToSpeechProvider(),
                 new AmazonPollySpeechToTextProvider(Settings.Default.AmazonAccessKey, Settings.Default.AmazonSecretKey),
-                new GoogleSpeechToTextProvider(Settings.Default.GoogleJson)
+                new GoogleSpeechToTextProvider(Settings.Default.GoogleJson),
+                new WatsonTextToSpeechProvider(Settings.Default.WatsonApiKey, Settings.Default.WatsonServiceUrl)
             };
 
             OnPropertyChanged(nameof(ProviderList));
