@@ -10,6 +10,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Cloud.TextToSpeech.V1;
 using Grpc.Auth;
 using Grpc.Core;
+using log4net;
 
 
 namespace TTSGoogle
@@ -17,6 +18,7 @@ namespace TTSGoogle
     public class GoogleSpeechToTextProvider : ITextToSpeechProvider {
 
         private readonly string _secret;
+        private static readonly ILog Log = LogManager.GetLogger(typeof(GoogleSpeechToTextProvider));
         public bool IsAvailable => Task.Run(CheckAvailable).Result;
 
         private TextToSpeechClient Client
@@ -82,6 +84,7 @@ namespace TTSGoogle
             }
             catch (Exception e)
             {
+                Log.Error("Cannot connect to Google", e);
                 return false;
             }
         }

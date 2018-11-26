@@ -24,6 +24,7 @@
                 <MenuItem Header="{x:Static p:Resources.MainWindowMenuHelpWebsite}" Click="MenuItemWebsite_OnClick" Icon="{iconPacks:Material Kind=Web}"/>
                 <MenuItem Header="{x:Static p:Resources.MainWindowMenuHelpDonate}" Click="MenuItemDonate_OnClick" Icon="{iconPacks:Material Kind=HomeCurrencyUsd}"/>
                 <MenuItem Header="{x:Static p:Resources.MainWindowMenuHelpAbout}" Click="MenuItemAbout_OnClick" Icon="{iconPacks:Material Kind=Information}"/>
+                <MenuItem Header="{x:Static p:Resources.MainWindowMenuHelpLogs}" Click="MenuItemLogs_OnClick" Icon="{iconPacks:Material Kind=ViewList}"/>
             </MenuItem>
         </Menu>
 

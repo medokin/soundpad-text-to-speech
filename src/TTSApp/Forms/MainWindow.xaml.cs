@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Common;
+using log4net;
 using Sentry;
 using SoundpadConnector;
 using SoundpadConnector.Response;
@@ -26,6 +27,7 @@ namespace TTSApp.Forms
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindow));
         public const string UpdateUrl = "https://soundpadcontrol.blob.core.windows.net/soundpad-tts";
         private static readonly SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1);
         private Soundpad _soundpad;
@@ -118,12 +120,13 @@ namespace TTSApp.Forms
 
         private async Task Play(string text)
         {
+            Log.Debug($"Playing: {text}");
+
             PlaySoundpadButton.IsEnabled = false;
             await SemaphoreSlim.WaitAsync();
             try
             {
                 var uniqueId = Guid.NewGuid().ToString().Replace("-", "").Clip(10);
-
 
                 // Sanitize Filename
                 var fileName = Regex.Replace(text.Clip(20), @"[^0-9A-Za-z ,]", "_", RegexOptions.Compiled);
@@ -169,6 +172,7 @@ namespace TTSApp.Forms
             }
             catch (Exception e)
             {
+                Log.Error("Cannot play sound", e);
                 SentrySdk.CaptureException(e);
                 MessageBox.Show("There was an error during playback", "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
@@ -207,6 +211,7 @@ namespace TTSApp.Forms
             }
             catch (Exception ex)
             {
+                Log.Error("Cannot select Provider", ex);
                 SentrySdk.CaptureException(ex);
                 MessageBox.Show("Provider is not available", "Error", MessageBoxButton.OK,
                     MessageBoxImage.Error);
@@ -292,6 +297,12 @@ namespace TTSApp.Forms
             catch (Exception e) 
             {
             }
+        }
+
+        private void MenuItemLogs_OnClick(object sender, RoutedEventArgs e)
+        {
+            var window = new LogWindow();
+            window.Show();
         }
     }
 }

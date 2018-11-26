@@ -160,6 +160,15 @@ namespace TTSApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logs.
+        /// </summary>
+        public static string MainWindowMenuHelpLogs {
+            get {
+                return ResourceManager.GetString("MainWindowMenuHelpLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report an issue.
         /// </summary>
         public static string MainWindowMenuHelpReportIssue {
