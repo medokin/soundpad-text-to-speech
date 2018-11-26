@@ -150,6 +150,9 @@
   <data name="MainWindowMenuHelpDonate" xml:space="preserve">
     <value>Spenden</value>
   </data>
+  <data name="MainWindowMenuHelpLogs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
   <data name="MainWindowMenuHelpReportIssue" xml:space="preserve">
     <value>Problem melden</value>
   </data>

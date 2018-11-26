@@ -8,11 +8,15 @@ using Amazon.Polly;
 using Amazon.Polly.Model;
 using Amazon.Runtime;
 using Common;
+using log4net;
 using Gender = Common.Gender;
 
 namespace TTSAmazonPolly
 {
     public class AmazonPollySpeechToTextProvider : ITextToSpeechProvider {
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(AmazonPollySpeechToTextProvider));
+
         private readonly AmazonPollyClient _client;
 
         public AmazonPollySpeechToTextProvider(string accessKey, string secretKey)
@@ -67,6 +71,7 @@ namespace TTSAmazonPolly
             }
             catch (Exception e)
             {
+                Log.Error("Cannot connect to Amazon Polly", e);
                 return false;
             }
         }

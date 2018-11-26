@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using log4net;
 using Sentry;
 using TTSApp.Properties;
 
@@ -15,13 +16,23 @@ namespace TTSApp {
     /// Interaktionslogik für "App.xaml"
     /// </summary>
     public partial class App : Application {
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(App));
+
         public App()
         {
             SentrySdk.Init("https://b656626b3ff74cf6a7cb73ba91dd0be4@sentry.io/1310740");
             RestoreSettings();
             CheckSettings();
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = Settings.Default.CultureInfo;
+            Thread.CurrentThread.CurrentUICulture = Settings.Default.CultureInfo;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            Log.Info("        =============  Started Logging  =============        ");
+            base.OnStartup(e);
         }
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
